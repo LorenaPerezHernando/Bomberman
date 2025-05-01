@@ -12,7 +12,7 @@ namespace Bomberman.Player
         private Animator _anim;
 
         [Header("Bomb")]
-        [SerializeField] private int _bombWave = 1;
+        public int _bombWave = 1;
         [SerializeField] private GameObject _prefabBomb;
         [SerializeField] private float _shootTime = 2;
         [SerializeField] private bool _shootIsActive = true; 
@@ -33,7 +33,8 @@ namespace Bomberman.Player
             if (Input.GetKeyDown(KeyCode.Space) && _shootIsActive)
             {
                 print("Bomba creada");
-                Instantiate(_prefabBomb, transform.position, transform.rotation);
+                Vector3 offsetY = new Vector3(0, 1.5f, 0);
+                Instantiate(_prefabBomb, transform.position + offsetY, transform.rotation);
                 StartCoroutine(DelayedShooting());
                 gameObject.GetComponent<AudioSource>().Play();
 
